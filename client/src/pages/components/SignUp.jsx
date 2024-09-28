@@ -3,7 +3,7 @@ import axios from "../../api/axios";
 
 import { useEffect, useState } from "react";
 
-const BASE_URL = process.env.server_url;
+const BASE_URL = 'https://riskend.onrender.com';
 
 function SignUp() {
     const [name, setName] = useState("");

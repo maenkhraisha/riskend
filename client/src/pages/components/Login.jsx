@@ -19,8 +19,9 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setloading(true);
+
         axios
-            .post(`${process.env.server_url}/customer/login`, {
+            .post(`https://riskend.onrender.com/customer/login`, {
                 email,
                 pwd,
             })
