@@ -7,7 +7,7 @@ const useLogout = () => {
     const navigate = useNavigate();
     const logout = async () => {
         try {
-            const response = await axios.get("http://localhost:3500/auth/logout", {
+            const response = await axios.get("https://riskend.onrender.com/auth/logout", {
                 withCredentials: true,
             });
             if (response.data.status) {

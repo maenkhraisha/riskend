@@ -8,7 +8,7 @@ const useRefreshToken = () => {
     const refresh = async () => {
         const response = await axios({
             method: "get",
-            url: `http://localhost:3500/refresh/`,
+            url: `https://riskend.onrender.com/refresh/`,
             withCredentials: true,
         });
 

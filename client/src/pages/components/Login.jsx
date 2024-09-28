@@ -20,7 +20,7 @@ function Login() {
         e.preventDefault();
         setloading(true);
         axios
-            .post("http://localhost:3500/customer/login", {
+            .post("https://riskend.onrender.com/customer/login", {
                 email,
                 pwd,
             })
