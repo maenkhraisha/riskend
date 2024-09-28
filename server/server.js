@@ -31,9 +31,9 @@ app.use("/cusRefresh", cusRefreshRouter);
 
 app.use("/customer", customerRouter);
 
+app.use("/country", countryRouter);
 app.use(verifyJWT);
 
-app.use("/country", countryRouter);
 app.use("/broker-acc", brokerAccRouter);
 app.use("/status", statusRouter);
 app.use("/signup", registerRouter);
