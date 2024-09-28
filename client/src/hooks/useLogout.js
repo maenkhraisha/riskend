@@ -1,18 +1,18 @@
-import axios from "axios";
+import useAxiosPrivate from "./useAxiosPrivate";
 import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 const useLogout = () => {
-    const { setAuth } = useAuth();
+    const { setAuthCus } = useAuth();
+    const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
     const logout = async () => {
         try {
-            const response = await axios.get("http://localhost:3500/auth/logout", {
-                withCredentials: true,
-            });
+            const response = await axiosPrivate.get("/customer/logout");
+
             if (response.data.status) {
-                setAuth({});
+                setAuthCus({});
             }
-            navigate("/login");
+            navigate("/loginSignup");
         } catch (err) {
             console.error(err);
         }

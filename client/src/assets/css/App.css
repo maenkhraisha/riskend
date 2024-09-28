@@ -1,0 +1,237 @@
+:root {
+    --color: #afa33e;
+    --color2: #ccbf44;
+    --color3: #c6b942;
+    --color4: #017309;
+    --color5: #8d0810;
+    --color6: #004aad;
+    --color7: #45535f;
+    --color8: #a9a9a9;
+    --color9: #555555;
+    --color10: #2b2b2b;
+    --color11: #d7ad00;
+    --color12: #c0b341;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--color10);
+
+    display: flex;
+    color: white;
+}
+
+ul {
+    list-style: none;
+}
+ul > li {
+    padding: 6px 0;
+
+    display: flex;
+    grid-column-gap: 12px;
+    align-items: center;
+}
+
+a {
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+input[type="password"],
+input[type="text"] {
+    height: 59px;
+    padding: 0 20px;
+    border-radius: 35px;
+    border: 0;
+    background-color: var(--color8);
+    font-size: 18px;
+    color: white;
+}
+input[type="text"]:focus {
+    outline: none;
+}
+
+select {
+    height: 40px;
+    font-size: 18px;
+    margin: 1px;
+    background-color: var(--color8);
+    color: white;
+    border-radius: 35px;
+    height: 59px;
+    padding: 0 20px;
+}
+
+button {
+    height: 59px;
+
+    border-radius: 35px;
+    padding: 0 2rem;
+    cursor: pointer;
+
+    width: max-content;
+
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+    background-color: var(--color10);
+    border: 0;
+}
+
+button.button-white {
+    background-color: white;
+    color: var(--color10);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 1rem;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 4px;
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+    grid-column-gap: 4px;
+}
+
+input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+    background-color: var(--color10);
+    border: 1px solid white;
+    border-radius: 15px;
+}
+/* home page style */
+
+#root {
+    width: 100%;
+    padding: 1rem;
+}
+.app {
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    grid-row-gap: 1rem;
+
+    min-width: 100%;
+    min-height: 100%;
+}
+.nav {
+    padding: 1rem;
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+.nav.client {
+    background-color: var(--color);
+}
+.nav.client > ul > a {
+    height: 59px;
+    display: flex;
+    align-items: center;
+    border-radius: 35px;
+    background-color: #2b2b2b;
+    min-width: 200px;
+    justify-content: center;
+}
+.nav.client .dropdown {
+    background-color: #2b2b2b;
+}
+
+.nav > ul {
+    display: flex;
+    grid-column-gap: 12px;
+}
+.nav > ul > a {
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+.logo {
+    height: 60px;
+    width: auto;
+}
+
+.loading-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 42px;
+    font-weight: 800;
+}
+
+/* popup styling */
+
+.upgrade-account-form-title {
+    background-color: var(--color10);
+    border-radius: 35px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.upgrade-account-form > div {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 1rem;
+}
+.btn-gray {
+    height: 59px;
+    display: flex;
+    align-items: center;
+    border-radius: 35px;
+    background-color: #2b2b2b;
+    padding: 0 2rem;
+    width: max-content;
+    justify-content: center;
+}
+.btn-white {
+    background-color: white;
+    color: var(--color10);
+    border-radius: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 59px;
+    padding: 0 2rem;
+    width: max-content;
+}
+
+.yellow-div {
+    border-radius: 35px;
+    background-color: var(--color2);
+    width: max-content;
+    padding: 2rem;
+    display: flex;
+    grid-column-gap: 1rem;
+    color: var(--color10);
+    font-size: 22px;
+    font-weight: 600;
+}

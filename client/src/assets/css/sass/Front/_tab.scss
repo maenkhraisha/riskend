@@ -1,0 +1,32 @@
+.tab {
+    font-size: 20px;
+    &-title {
+        font-size: 24px;
+        font-weight: 800;
+    }
+    &-body {
+        display: flex;
+        flex-direction: column;
+        grid-row-gap: 2rem;
+        &__btn {
+            display: flex;
+            grid-column-gap: 1rem;
+            font-size: 22px;
+            padding: 2rem;
+            background-color: #c6b942;
+            border-radius: calc(var(--brd-radius) * 1.5);
+            width: 500px;
+            color: #2b2b2b;
+            & > label {
+                padding: 0.5rem 1rem;
+                border-radius: var(--brd-radius);
+                cursor: pointer;
+                padding: 1rem 2rem;
+            }
+            & .active-tab {
+                background-color: #2b2b2b;
+                color: white;
+            }
+        }
+    }
+}

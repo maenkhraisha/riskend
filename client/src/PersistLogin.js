@@ -6,8 +6,8 @@ import useAuth from "./hooks/useAuth";
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true);
     const refresh = useRefreshToken();
-    const { auth } = useAuth();
-    let persist = localStorage.getItem("persist");
+    const { authCus } = useAuth();
+    let persist = localStorage.getItem("cuspersist");
 
     persist = persist == "true" ? true : false;
 
@@ -16,7 +16,7 @@ const PersistLogin = () => {
 
         const verifyRefreshToken = async () => {
             try {
-                await refresh();
+                const response = await refresh();
             } catch (err) {
                 console.error(err);
             } finally {
@@ -26,7 +26,7 @@ const PersistLogin = () => {
 
         // persist added here AFTER tutorial video
         // Avoids unwanted call to verifyRefreshToken
-        !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false);
+        !authCus?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false);
 
         return () => (isMounted = false);
     }, []);

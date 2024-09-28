@@ -5,6 +5,7 @@ import { User } from "../models/User.js";
 
 const signup = async (req, res) => {
     const { username, email, password } = req.body;
+
     const user = await User.findOne({ email });
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -129,12 +130,25 @@ const forgetPassword = async (req, res) => {
     res.json({ status: true, message: "Email sent successfuly" });
 };
 
+const getUser = (req, res) => {};
+
+const getUsers = async (req, res) => {
+    try {
+        const users = await User.find();
+        return res.json({ users: users });
+    } catch (error) {
+        console.log(error);
+        return res.json({ msg: "Request Faild" });
+    }
+};
 const controllers = {
     signup,
     login,
     logout,
     resetPassword,
     forgetPassword,
+    getUser,
+    getUsers,
 };
 
 export { controllers as userController };

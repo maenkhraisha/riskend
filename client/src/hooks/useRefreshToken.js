@@ -3,12 +3,12 @@ import { jwtDecode } from "jwt-decode";
 import useAuth from "./useAuth";
 
 const useRefreshToken = () => {
-    const { setAuth } = useAuth();
+    const { setAuthCus } = useAuth();
 
     const refresh = async () => {
         const response = await axios({
             method: "get",
-            url: `http://localhost:3500/refresh/`,
+            url: `http://localhost:3500/cusRefresh/`,
             withCredentials: true,
         });
 
@@ -17,7 +17,7 @@ const useRefreshToken = () => {
         const id = decoded?.id || "";
         const email = decoded?.email || "";
 
-        setAuth((prev) => {
+        setAuthCus((prev) => {
             return {
                 ...prev,
                 accessToken: accessToken,
