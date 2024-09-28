@@ -10,7 +10,7 @@ function ForgetPassword() {
         e.preventDefault();
 
         axios
-            .post("https://riskend.onrender.com/auth/forgetPassword", {
+            .post(`${process.env.server_url}/auth/forgetPassword`, {
                 email,
             })
             .then((res) => {

@@ -126,7 +126,7 @@ const forgetPassword = async (req, res) => {
             to: customer.email,
             subject: "Reset Password",
             test: "",
-            html: `<a href="https://riskend.onrender.com/resetPassword/${token}" target="_blank">Reset Password</a>`,
+            html: `<a href="${process.env.server_url}/resetPassword/${token}" target="_blank">Reset Password</a>`,
         };
 
         transporter.sendMail(mailOptions, function (error, info) {

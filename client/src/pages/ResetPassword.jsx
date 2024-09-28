@@ -11,7 +11,7 @@ function ResetPassword() {
         e.preventDefault();
 
         axios
-            .post("https://riskend.onrender.com/auth/resetPassword/" + token, {
+            .post(`${process.env.server_url}/auth/resetPassword/` + token, {
                 password,
             })
             .then((res) => {

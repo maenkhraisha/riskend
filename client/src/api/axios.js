@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "https://riskend.onrender.com";
+const BASE_URL = process.env.server_url;
 
 export default axios.create({
     baseURL: BASE_URL,
