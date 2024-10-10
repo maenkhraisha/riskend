@@ -3,7 +3,7 @@ import express from "express";
 
 const router = express.Router();
 
-router.get("/", brokerAccController.getBrokerAccounts);
+router.get("/:id", brokerAccController.getBrokerAccounts);
 router.post("/", brokerAccController.addBrokerAcc);
 router.put("/", brokerAccController.updateBrokerAcc);
 router.delete("/", brokerAccController.deleteBrokerAcc);

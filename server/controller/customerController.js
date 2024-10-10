@@ -43,13 +43,13 @@ const login = async (req, res) => {
     if (!match) return res.json({ status: false, message: "password error" });
 
     const accessToken = jwt.sign({ email: customer.email, id: customer._id }, process.env.KEY, {
-        expiresIn: "1d",
+        expiresIn: "5s",
     });
     const refreshToken = jwt.sign(
         { email: customer.email, id: customer._id },
         process.env.REFRESH_TOKEN_SECRET,
         {
-            expiresIn: "30d",
+            expiresIn: "1d",
         }
     );
 
@@ -63,7 +63,6 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
     try {
         const refreshToken = req.cookies.CusRefreshToken;
-        console.log(refreshToken + " <<<<< refresh token");
 
         if (refreshToken) {
             const decode = await jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);

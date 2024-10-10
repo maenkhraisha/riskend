@@ -1,4 +1,4 @@
-import axios from "axios";
+import { axiosPrivate } from "../../api/axios";
 import { jwtDecode } from "jwt-decode";
 import useAuth from "./useAuth";
 
@@ -6,11 +6,7 @@ const useRefreshToken = () => {
     const { setAuth } = useAuth();
 
     const refresh = async () => {
-        const response = await axios({
-            method: "get",
-            url: `https://riskend.onrender.com/refresh/`,
-            withCredentials: true,
-        });
+        const response = await axiosPrivate.get(`/refresh/`);
 
         const accessToken = response.data.accessToken;
         const decoded = accessToken ? jwtDecode(accessToken) : undefined;

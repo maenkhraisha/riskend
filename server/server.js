@@ -10,6 +10,7 @@ import { customerRouter } from "./routes/customerRoute.js";
 import { registerRouter } from "./routes/registerRoute.js";
 import { countryRouter } from "./routes/countryRoute.js";
 import { brokerAccRouter } from "./routes/brokerAccRoute.js";
+import { masterAccRouter } from "./routes/masterAccRoute.js";
 import { statusRouter } from "./routes/statusRoute.js";
 import { refreshRouter } from "./routes/refreshRoute.js";
 import { cusRefreshRouter } from "./routes/cusRefreshRoute.js";
@@ -35,6 +36,7 @@ app.use("/country", countryRouter);
 app.use(verifyJWT);
 
 app.use("/broker-acc", brokerAccRouter);
+app.use("/master-acc", masterAccRouter);
 app.use("/status", statusRouter);
 app.use("/signup", registerRouter);
 

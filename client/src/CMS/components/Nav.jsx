@@ -59,7 +59,7 @@ function Nav() {
 
     return (
         <nav>
-            <Link className="nav-logo" to={"/cms"}>
+            <Link className="nav-logo" to={"/"}>
                 <img src={logo} alt="" srcSet="" />
             </Link>
             <ul>

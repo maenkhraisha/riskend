@@ -21,6 +21,9 @@ function Home() {
                             <Link to="/loginSignup" className="btn yellow">
                                 تسجيل الدخول
                             </Link>
+                            {/* <Link to="/cms/login" className="btn yellow">
+                                لوحة التحكم
+                            </Link> */}
                             <div>
                                 <img src={img1} alt="" srcSet="" />
                                 <img src={img2} alt="" srcSet="" />

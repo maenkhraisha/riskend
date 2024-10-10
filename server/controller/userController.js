@@ -31,13 +31,13 @@ const login = async (req, res) => {
     if (!match) return res.json({ status: false, message: "password error" });
 
     const accessToken = jwt.sign({ email: user.email, id: user._id }, process.env.KEY, {
-        expiresIn: "1d",
+        expiresIn: "1h",
     });
     const refreshToken = jwt.sign(
         { email: user.email, id: user._id },
         process.env.REFRESH_TOKEN_SECRET,
         {
-            expiresIn: "30d",
+            expiresIn: "1d",
         }
     );
 

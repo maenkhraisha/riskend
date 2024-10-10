@@ -1,10 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { jwtDecode } from "jwt-decode";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 function LoginCms() {
+    const axiosPrivate = useAxiosPrivate();
     let persistLS = window.localStorage.getItem("persist") == "true" ? true : false;
     const navigate = useNavigate();
     const { setAuth } = useAuth();
@@ -15,33 +17,31 @@ function LoginCms() {
     const [error, seterror] = useState("");
     const [persist, setPersist] = useState(persistLS);
 
-    axios.defaults.withCredentials = true;
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setloading(true);
-        axios
-            .post(`https://riskend.onrender.com/auth/login`, {
+        try {
+            const response = await axiosPrivate.post(`/auth/login`, {
                 email,
                 password,
-            })
-            .then((response) => {
-                setloading(false);
-                if (response.data.status) {
-                    const accessToken = response.data.accessToken;
-
-                    const decoded = accessToken ? jwtDecode(accessToken) : undefined;
-                    const id = decoded?.id || "";
-                    const email = decoded?.email || "";
-
-                    setAuth({ accessToken: accessToken, id: id, email: email });
-                    navigate("/cms");
-                } else {
-                    seterror(response.data.message);
-                }
-            })
-            .catch((err) => {
-                console.log(err);
             });
+
+            setloading(false);
+            if (response.data.status) {
+                const accessToken = response.data.accessToken;
+
+                const decoded = accessToken ? jwtDecode(accessToken) : undefined;
+                const id = decoded?.id || "";
+                const email = decoded?.email || "";
+
+                setAuth({ accessToken: accessToken, id: id, email: email });
+                navigate("/cms");
+            } else {
+                seterror(response.data.message);
+            }
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     const loadingMessage = () => {
@@ -117,7 +117,7 @@ function LoginCms() {
                         />
                         <label htmlFor="persist">تذكرني</label>
                     </div>
-                    <Link to="/forgetPassword">نسيت كلمة المرور</Link>
+                    <Link to="/cms/forgetPassword">نسيت كلمة المرور</Link>
                 </form>
             </section>
         </>

@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 
 import { useEffect, useState } from "react";
-
-const BASE_URL = 'https://riskend.onrender.com';
 
 function SignUp() {
     const [name, setName] = useState("");

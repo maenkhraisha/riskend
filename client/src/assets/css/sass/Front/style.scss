@@ -90,6 +90,14 @@ input[type="password"] {
 
     display: flex;
     align-items: center;
+    grid-column-gap: 8px;
+    & span {
+        margin-top: 4px;
+        line-height: 0%;
+    }
+    & i {
+        line-height: 0%;
+    }
 }
 
 .account-client {
@@ -157,10 +165,11 @@ input[type="password"] {
 .accounts-list {
     & li {
         display: grid;
+        align-items: center;
         padding: 1rem;
         grid-row-gap: 1rem;
         grid-column-gap: 2rem;
-        grid-template-columns: 100px repeat(7, max-content);
+        grid-template-columns: 150px 100px 100px 100px 150px 150px 150px 150px;
         & img {
             height: 50px;
             width: auto;
@@ -247,7 +256,7 @@ input[type="password"] {
             display: flex;
             align-items: center;
             justify-content: center;
-            grid-column-gap: 10px;
+            grid-column-gap: 20px;
 
             background-color: var(--color-gray);
             border-radius: var(--brd-radius);
@@ -257,17 +266,23 @@ input[type="password"] {
             & img {
                 height: 50px;
                 width: 50px;
+                object-fit: cover;
                 border-radius: 50%;
             }
 
             & span {
                 font-size: 24px;
+                white-space: nowrap;
             }
         }
         &__body {
             display: flex;
             flex-direction: column;
             grid-row-gap: 1rem;
+            padding-top: 2rem;
+            & span {
+                font-size: 22px;
+            }
             &-btn {
                 display: flex;
                 justify-content: center;

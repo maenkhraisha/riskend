@@ -11,7 +11,7 @@ function ForgetPassword() {
         e.preventDefault();
 
         try {
-            const response = await axiosPrivate.post(`/auth/forgetPassword`, {
+            const response = await axiosPrivate.post(`/customer/forgetPassword`, {
                 email,
             });
 

@@ -1,20 +1,21 @@
-import { BrokerAcc } from "../models/BrokerAcc.js";
+import { BrokerAccount } from "../models/BrokerAccount.js";
 
 const getBrokerAccounts = async (req, res) => {
-    const user = req.params.id;
-    try {
-        const brokerAccounties = await BrokerAcc.find();
+    const cusId = req.params.id;
 
-        res.json({ brokerAccounties: brokerAccounties });
+    try {
+        const brokerAccounts = await BrokerAccount.find({ cusId: cusId });
+
+        res.json({ brokerAccounts: brokerAccounts });
     } catch (error) {
-        res.json({ msg: "error in get brokerAccounties" });
+        res.json({ msg: "error in get brokerAccounts" });
         console.log(error);
     }
 };
 const addBrokerAcc = async (req, res) => {
     const { cusId, platform, password, accNo, server, broker } = req.body;
 
-    const newBrokerAcc = new BrokerAcc({
+    const newBrokerAcc = new BrokerAccount({
         cusId,
         platform,
         password,
@@ -33,14 +34,14 @@ const addBrokerAcc = async (req, res) => {
 };
 const updateBrokerAcc = (req, res) => {};
 const deleteBrokerAcc = async (req, res) => {
-    const { id } = req.body;
+    const id = req.body.id;
 
     if (id == undefined) {
         return res.json({ message: "Id not defined" });
     }
 
     try {
-        const response = await BrokerAcc.findOneAndDelete({ _id: id });
+        const response = await BrokerAccount.deleteOne({ _id: id });
     } catch (error) {
         console.log(error);
     }

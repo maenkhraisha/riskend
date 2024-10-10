@@ -9,7 +9,7 @@ const getRefreshToken = async (req, res) => {
     const refreshToken = cookies.refreshToken;
 
     const user = await User.findOne({ refreshToken });
-    if (!user.refreshToken) return res.sendStatus(401);
+    if (!user?.refreshToken) return res.sendStatus(401);
 
     jwt.verify(user.refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
         if (err) return res.sendStatus(403);

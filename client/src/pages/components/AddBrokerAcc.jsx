@@ -2,11 +2,10 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
-function AddBrokerAcc({ setOpenAddAccount }) {
+function AddBrokerAcc({ setOpenAddAccount, getAccounts }) {
     const axiosPrivate = useAxiosPrivate();
 
     const { authCus } = useAuth();
-    console.log(authCus);
 
     const [formData, setFormData] = useState({
         cusId: authCus.id,
@@ -26,11 +25,12 @@ function AddBrokerAcc({ setOpenAddAccount }) {
         e.preventDefault();
         try {
             const response = await axiosPrivate.post("/broker-acc", formData);
+            getAccounts();
         } catch (error) {
             console.log(error);
         }
-        setOpenAddAccount(false);
     };
+
     return (
         <div className="popup account_add">
             <form className="popup__content">

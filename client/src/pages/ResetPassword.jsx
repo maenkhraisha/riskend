@@ -1,27 +1,27 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 function ResetPassword() {
+    const axiosPrivate = useAxiosPrivate();
     const [password, setPassword] = useState("");
     const { token } = useParams();
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        axios
-            .post(`https://riskend.onrender.com/auth/resetPassword/` + token, {
-                password,
-            })
-            .then((res) => {
-                if (res.data.status) {
-                    navigate("/cms/login");
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        try {
+        } catch (error) {
+            console.log(error);
+        }
+        const response = await axiosPrivate.post(`/auth/resetPassword/` + token, {
+            password,
+        });
+
+        if (response.data.status) {
+            navigate("/cms/login");
+        }
     };
     return (
         <>

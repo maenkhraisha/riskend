@@ -1,16 +1,16 @@
 import person from "../../assets/img/person.jpeg";
 
-function MasterCard() {
+function MasterCard({ master }) {
     return (
         <div className="master-card">
             <div className="master-card__title">
-                <span>Faris ahmad</span>
-                <img src={person} alt="" srcSet="" />
+                <span>{master.cusId.name}</span>
+                <img src={master.cusId.image} alt="" srcSet="" />
             </div>
             <div className="master-card__body">
                 <div>
                     <span>إقل راس مال :</span>
-                    <span>3000</span>
+                    <span>{master.masterId.minCapital}</span>
                 </div>
                 <div>
                     <span>سنوات الخبرة :</span>
@@ -32,6 +32,7 @@ function MasterCard() {
                 </div>
                 <div>
                     <span>قيمة الإشتراك الشهري :</span>
+                    <span>{master.masterId.minMonthlyProfit}</span>
                 </div>
                 <div className="master-card__body-btn">
                     <a className="btn yellow">اضف إلي السلة</a>
