@@ -1,4 +1,4 @@
-import AccountMasterList from "./AccountMasterList";
+import AccountLinkList from "./AccountLinkList";
 import AccountMasterDues from "./AccountMasterDues";
 import Tab from "../general_compenents/Tab";
 
@@ -8,7 +8,7 @@ function NavMaster() {
             <Tab
                 title={""}
                 tabs={[
-                    { name: "العملاء", content: <AccountMasterList /> },
+                    { name: "العملاء", content: <AccountLinkList /> },
                     { name: "المستحقات", content: <AccountMasterDues /> },
                 ]}
             />

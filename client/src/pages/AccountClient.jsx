@@ -9,7 +9,6 @@ import plus from "../assets/img/plus.png";
 import { useState, useEffect } from "react";
 import AddBrokerAcc from "./components/AddBrokerAcc";
 import UpgradeToMaster from "./components/UpgradeToMaster";
-import useAuth from "../hooks/useAuth";
 
 let accountsNum = [];
 
@@ -17,15 +16,16 @@ function AccountClient() {
     const [openUpgrad, setOpenUpgrad] = useState(false);
     const [openAddAccount, setOpenAddAccount] = useState(false);
 
-    const { authCus } = useAuth();
-
     const [clientAccounts, setClientAccounts] = useState([]);
     const axiosPrivate = useAxiosPrivate();
 
     const getAccounts = async () => {
         try {
-            const response = await axiosPrivate.get(`/broker-acc/${authCus.id}`);
+            const response = await axiosPrivate.get(`/broker-acc`);
+
             setClientAccounts(response.data.brokerAccounts);
+            console.log(response.data.brokerAccounts);
+
             accountsNum = [];
             response.data.brokerAccounts.map((acc) => {
                 if (acc.masterId == null) accountsNum.push(acc.accNo);
@@ -35,13 +35,13 @@ function AccountClient() {
         }
     };
     const UpdateAccount = async (e) => {};
-    const DeleteAccount = async (e) => {
-        e.preventDefault();
+    const DeleteAccount = async (event) => {
+        event.preventDefault();
 
         try {
             const response = await axiosPrivate.delete("/broker-acc", {
                 data: {
-                    id: e.target.value,
+                    id: event.target.value,
                 },
             });
 
@@ -97,12 +97,14 @@ function AccountClient() {
                     </li>
                     {clientAccounts.map((acc, index) => (
                         <li key={index}>
-                            <div>
-                                <button value={acc._id} onClick={(e) => UpdateAccount(e)}>
-                                    Update
-                                </button>
-                                <button value={acc._id} onClick={(e) => DeleteAccount(e)}>
-                                    Delete
+                            <div className="accounts-list__icons">
+                                <i
+                                    value={acc._id}
+                                    onClick={(e) => UpdateAccount(e)}
+                                    className="bi bi-pencil-square"
+                                ></i>
+                                <button value={acc._id} onClick={(event) => DeleteAccount(event)}>
+                                    <i className="bi bi-trash-fill"></i>
                                 </button>
                             </div>
                             <p className="rounded-gray">{acc.platform}</p>
@@ -110,10 +112,18 @@ function AccountClient() {
                             <p className="rounded-gray">{acc.server}</p>
                             <p className="rounded-gray">{acc.broker}</p>
                             {acc.masterId ? (
-                                <span className="rounded-gray">Master</span>
+                                <span className="rounded-gray">ماستر</span>
+                            ) : acc.linkId ? (
+                                <span className="rounded-gray">
+                                    {acc.linkId?.masterId.cusId.name}
+                                </span>
                             ) : (
-                                <Link to="/masterConnect" className="rounded-gray">
-                                    ربط الحساب
+                                <Link
+                                    to="/masterConnect/"
+                                    state={{ number: acc._id }}
+                                    className="rounded-gray"
+                                >
+                                    <span>ربط الحساب</span>
                                 </Link>
                             )}
                             {acc.masterId ? (
@@ -123,10 +133,12 @@ function AccountClient() {
                                     onClick={deleteMaster}
                                 >
                                     <span>Master</span>
-                                    <i class="bi bi-trash-fill"></i>
+                                    <i className="bi bi-trash-fill"></i>
                                 </button>
                             ) : (
-                                <span className="rounded-gray">تحت المراجعة</span>
+                                <span className="rounded-gray">
+                                    {acc?.status?.name || "تحت المراجعة"}
+                                </span>
                             )}
                         </li>
                     ))}

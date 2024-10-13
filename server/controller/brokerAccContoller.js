@@ -1,17 +1,46 @@
 import { BrokerAccount } from "../models/BrokerAccount.js";
+import jwt from "jsonwebtoken";
 
 const getBrokerAccounts = async (req, res) => {
-    const cusId = req.params.id;
+    const decode = await jwt.verify(req.cookies.CusRefreshToken, process.env.REFRESH_TOKEN_SECRET);
+    const cusId = decode.id;
 
     try {
-        const brokerAccounts = await BrokerAccount.find({ cusId: cusId });
+        const brokerAccounts = await BrokerAccount.find({ cusId: cusId })
+            .populate("status")
+            .populate({
+                path: "linkId",
+                populate: {
+                    path: "masterId",
+                    model: "BrokerAccount",
+                    populate: {
+                        path: "cusId",
+                        model: "Customer",
+                    },
+                },
+            });
 
         res.json({ brokerAccounts: brokerAccounts });
     } catch (error) {
-        res.json({ msg: "error in get brokerAccounts" });
+        res.json({ msg: "error in get broker Accounts" });
         console.log(error);
     }
 };
+
+const getAllBrokerAccounts = async (req, res) => {
+    const decode = await jwt.verify(req.cookies.CusRefreshToken, process.env.REFRESH_TOKEN_SECRET);
+    const cusId = decode.id;
+
+    try {
+        const brokerAccounts = await BrokerAccount.find().populate("cusId").populate("status");
+
+        res.json({ brokerAccounts: brokerAccounts });
+    } catch (error) {
+        res.json({ msg: "error in get broker Accounts" });
+        console.log(error);
+    }
+};
+
 const addBrokerAcc = async (req, res) => {
     const { cusId, platform, password, accNo, server, broker } = req.body;
 
@@ -32,7 +61,26 @@ const addBrokerAcc = async (req, res) => {
 
     res.json({ message: "Add successfully" });
 };
-const updateBrokerAcc = (req, res) => {};
+const updateBrokerAcc = async (req, res) => {
+    const { id, accNo, password, server, broker, status } = req.body.data;
+
+    try {
+        const response = await BrokerAccount.findByIdAndUpdate(
+            { _id: id },
+            {
+                accNo: accNo,
+                password: password,
+                server: server,
+                broker: broker,
+                status: status,
+            }
+        );
+
+        res.json({ meg: "update successfully" });
+    } catch (error) {
+        console.log(error);
+    }
+};
 const deleteBrokerAcc = async (req, res) => {
     const id = req.body.id;
 
@@ -51,6 +99,7 @@ const deleteBrokerAcc = async (req, res) => {
 
 const controllers = {
     getBrokerAccounts,
+    getAllBrokerAccounts,
     addBrokerAcc,
     updateBrokerAcc,
     deleteBrokerAcc,

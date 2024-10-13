@@ -19,6 +19,8 @@ import Layout from "./CMS/pages/Layout";
 
 import "./assets/css/styleCms.css";
 import CustomersAccounts from "./CMS/pages/CustomerAccounts";
+import BrokerAccounts from "./CMS/pages/BrokerAccounts";
+import LinkAccounts from "./CMS/pages/LinkAccounts";
 import Home from "./pages/Home";
 
 function AppCms() {
@@ -41,6 +43,11 @@ function AppCms() {
                                         path="/cms/customeraccounts"
                                         element={<CustomersAccounts />}
                                     />
+                                    <Route
+                                        path="/cms/brokeraccounts"
+                                        element={<BrokerAccounts />}
+                                    />
+                                    <Route path="/cms/linkaccounts" element={<LinkAccounts />} />
                                 </Route>
                             </Route>
                         </Route>

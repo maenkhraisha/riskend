@@ -33,7 +33,7 @@ function App() {
                         <Route path="/loginSignup" element={<LoginSignup />} />
                         <Route path="/forgetPassword" element={<ForgetPassword />} />
                         <Route path="/resetPassword/:token" element={<ResetPassword />} />
-                        <Route path="*" element={<NoMatch />} />
+
                         {/* this route protected by login */}
                         <Route element={<PersistLogin />}>
                             <Route element={<RequireAuth />}>

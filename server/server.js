@@ -11,6 +11,7 @@ import { registerRouter } from "./routes/registerRoute.js";
 import { countryRouter } from "./routes/countryRoute.js";
 import { brokerAccRouter } from "./routes/brokerAccRoute.js";
 import { masterAccRouter } from "./routes/masterAccRoute.js";
+import { linkAccRouter } from "./routes/linkAccRoute.js";
 import { statusRouter } from "./routes/statusRoute.js";
 import { refreshRouter } from "./routes/refreshRoute.js";
 import { cusRefreshRouter } from "./routes/cusRefreshRoute.js";
@@ -37,6 +38,7 @@ app.use(verifyJWT);
 
 app.use("/broker-acc", brokerAccRouter);
 app.use("/master-acc", masterAccRouter);
+app.use("/link-acc", linkAccRouter);
 app.use("/status", statusRouter);
 app.use("/signup", registerRouter);
 

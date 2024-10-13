@@ -75,17 +75,11 @@ body {
     grid-column-gap: 1rem;
 }
 
-button {
-    cursor: pointer;
-    background-color: var(--color-yellow);
-    color: var(--color-black);
-    padding: 3px 8px;
-    border-radius: 6px;
-    font-size: 18px;
-}
-
 ul {
     list-style: none;
+}
+i {
+    cursor: pointer;
 }
 
 input[type="text"],
@@ -187,4 +181,117 @@ label {
     display: grid;
     grid-template-columns: 1fr max-content;
     grid-column-gap: 1rem;
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.customer-list {
+    margin-top: 4rem;
+    & ul {
+        display: flex;
+        flex-direction: column;
+        grid-row-gap: 1rem;
+        & li {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+
+            grid-column-gap: 1rem;
+        }
+        & line {
+            grid-column: 1/-1;
+        }
+    }
+}
+.broker-list {
+    margin-top: 4rem;
+    & ul {
+        display: flex;
+        flex-direction: column;
+
+        border: 1px solid white;
+        border-radius: 6px;
+        padding: 1rem;
+        & li {
+            display: grid;
+            grid-template-columns: 1fr 200px 100px 70px 80px 80px 50px 35px;
+            align-items: center;
+            grid-column-gap: 2rem;
+            border-radius: 6px;
+            padding: 1rem;
+            & .email {
+                text-align: left;
+                direction: ltr;
+            }
+
+            &:hover {
+                background-color: var(--color-light-dark);
+            }
+        }
+        & i {
+            color: var(--color-yellow);
+            font-size: 30px;
+
+            &:before {
+            }
+        }
+        & line {
+            grid-column: 1/-1;
+        }
+    }
+}
+.link-list {
+    margin-top: 4rem;
+    & ul {
+        display: flex;
+        flex-direction: column;
+
+        border: 1px solid white;
+        border-radius: 6px;
+        padding: 1rem;
+        & li {
+            display: grid;
+            grid-template-columns: 1fr 100px 1fr 100px 80px 80px 1fr;
+            align-items: center;
+            grid-column-gap: 2rem;
+            border-radius: 6px;
+            padding: 1rem;
+            & .email {
+                text-align: left;
+                direction: ltr;
+            }
+
+            &:hover {
+                background-color: var(--color-light-dark);
+            }
+        }
+        & i {
+            color: var(--color-yellow);
+            font-size: 30px;
+
+            &:before {
+            }
+        }
+        & line {
+            grid-column: 1/-1;
+        }
+    }
+}
+.users-list {
+    margin-top: 4rem;
+    & ul {
+        display: flex;
+        flex-direction: column;
+        grid-row-gap: 1rem;
+        & li {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr) min-content;
+
+            grid-column-gap: 1rem;
+        }
+        & line {
+            grid-column: 1/-1;
+        }
+    }
 }

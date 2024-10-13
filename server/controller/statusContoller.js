@@ -14,11 +14,14 @@ const getStatus = async (req, res) => {
 const addStatus = async (req, res) => {
     const { name } = req.body;
 
-    const newStatus = new Status({
-        name,
-    });
-
     try {
+        const res = await Status.find();
+        const count = res.length;
+
+        const newStatus = new Status({
+            number: count + 1,
+            name,
+        });
         const response = await newStatus.save();
     } catch (error) {
         console.log(error);

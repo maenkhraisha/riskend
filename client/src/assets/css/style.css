@@ -44,15 +44,25 @@
   cursor: pointer;
 }
 .dropdown__btn {
-  padding: 0 12px;
+  padding: 6px 12px;
   display: flex;
   height: 100%;
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  grid-column-gap: 1rem;
+}
+.dropdown__btn span {
+  line-height: 1;
 }
 .dropdown__btn-img {
   height: 20px;
+}
+.dropdown__btn-user-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: white;
 }
 .dropdown__content {
   border: 3px solid #e3e3e3;
@@ -125,8 +135,21 @@
   --brd-radius: 36px;
 }
 
-* {
+body,
+body > div,
+main,
+nav {
   scrollbar-gutter: stable both-edges;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+button > * {
+  pointer-events: none;
 }
 
 .signup-register {
@@ -177,17 +200,24 @@ select,
 input[type=text],
 input[type=password] {
   height: 60px;
-  border-radius: var(--brd-radius);
   font-size: 22px;
+  border: 2px solid white;
+  border-radius: var(--brd-radius);
   color: var(--color-yellow);
   background-color: transparent;
-  border: 2px solid white;
-  padding: 0 1rem;
+  padding: 0 3rem;
 }
 select::placeholder,
 input[type=text]::placeholder,
 input[type=password]::placeholder {
   color: var(--color-yellow);
+}
+
+select {
+  padding: 0 1rem 0 3rem;
+}
+select:focus-visible {
+  outline: none;
 }
 
 .rounded-gray {
@@ -250,9 +280,6 @@ input[type=password]::placeholder {
   grid-row-gap: 1rem;
   grid-column-gap: 2rem;
 }
-.table.account-master {
-  grid-template-columns: repeat(8, max-content);
-}
 .table.account-dues {
   grid-template-columns: repeat(7, max-content);
 }
@@ -263,13 +290,32 @@ input[type=password]::placeholder {
   grid-column: 1/-1;
 }
 
+.account-master li {
+  display: grid;
+  align-items: center;
+  padding: 1rem;
+  grid-row-gap: 1rem;
+  grid-column-gap: 1.25rem;
+  grid-template-columns: 25px 150px 100px 100px 150px 150px 150px 150px;
+}
+
+.accounts-list__icons {
+  display: flex;
+  align-items: center;
+  grid-column-gap: 0.5rem;
+}
+.accounts-list__icons i {
+  color: var(--color-yellow);
+  font-size: 28px;
+  line-height: 1;
+}
 .accounts-list li {
   display: grid;
   align-items: center;
   padding: 1rem;
   grid-row-gap: 1rem;
   grid-column-gap: 2rem;
-  grid-template-columns: 150px 100px 100px 100px 150px 150px 150px 150px;
+  grid-template-columns: 70px 100px 100px 100px 150px 150px 150px 150px;
 }
 .accounts-list li img {
   height: 50px;

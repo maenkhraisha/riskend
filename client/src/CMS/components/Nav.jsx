@@ -14,6 +14,14 @@ const navList = [
                 path: "/cms/customeraccounts",
             },
             {
+                title: "حسابات البروكر",
+                path: "/cms/brokeraccounts",
+            },
+            {
+                title: "حسابات الربط",
+                path: "/cms/linkaccounts",
+            },
+            {
                 title: "المستخدمين",
                 path: "/cms/users",
             },

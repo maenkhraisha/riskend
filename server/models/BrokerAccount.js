@@ -16,7 +16,10 @@ const BrokerAccountSchema = new mongoose.Schema({
     masterId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "MasterAccount",
-        require: true,
+    },
+    linkId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "LinkAccount",
     },
 });
 

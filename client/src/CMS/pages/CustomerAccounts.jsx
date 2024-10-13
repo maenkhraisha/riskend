@@ -27,24 +27,29 @@ function MasterAccounts() {
         <>
             <section className="main">
                 <div>
-                    <h1>حسابات الماستر</h1>
+                    <h1>العملاء</h1>
 
-                    <div className="table account-list">
-                        <span>الاسم</span>
-                        <span>البريد الالكتروني</span>
-                        <span>رقم الهاتف</span>
+                    <div className="customer-list">
+                        <ul>
+                            <li>
+                                <span>الاسم</span>
+                                <span>البريد الالكتروني</span>
+                                <span>رقم الهاتف</span>
+                                <span>الدولة</span>
+                                <span>تاريخ الميلاد</span>
+                            </li>
 
-                        <span>الدولة</span>
-                        <div className="line"></div>
-                        {accounts?.map((item, index) => (
-                            <>
-                                <span key={index}>{item.name}</span>
-                                <span key={index}>{item.email}</span>
-                                <span key={index}>{item.telephone}</span>
-
-                                <span key={index}>{item.country.name}</span>
-                            </>
-                        ))}
+                            <div className="line"></div>
+                            {accounts?.map((item, index) => (
+                                <li>
+                                    <span key={index}>{item.name}</span>
+                                    <span key={index}>{item.email}</span>
+                                    <span key={index}>{item.telephone}</span>
+                                    <span key={index}>{item.country.name}</span>
+                                    <span key={index}>{item.birthDate}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </section>

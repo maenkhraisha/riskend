@@ -1,6 +1,19 @@
-import person from "../../assets/img/person.jpeg";
+import { useState } from "react";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
-function MasterCard({ master }) {
+function MasterCard({ master, number }) {
+    const axiosPrivate = useAxiosPrivate();
+    const [risk, setRisk] = useState("1");
+    const [period, setPeriod] = useState("1m");
+    const handleLinkAccount = async () => {
+        const response = await axiosPrivate.post(`/link-acc`, {
+            brokerId: number,
+            masterId: master._id,
+            risk: risk,
+            period: period,
+        });
+    };
+
     return (
         <div className="master-card">
             <div className="master-card__title">
@@ -8,6 +21,16 @@ function MasterCard({ master }) {
                 <img src={master.cusId.image} alt="" srcSet="" />
             </div>
             <div className="master-card__body">
+                {/* <div>
+                    <span>حساب البروكر</span>
+                    <span> : {number}</span>
+                </div>
+
+                <div>
+                    <span>حساب الماستر</span>
+                    <span> : {master._id}</span>
+                </div> */}
+
                 <div>
                     <span>إقل راس مال :</span>
                     <span>{master.masterId.minCapital}</span>
@@ -18,11 +41,21 @@ function MasterCard({ master }) {
                     <span>سنوات</span>
                 </div>
                 <div>
-                    <select name="" id="">
-                        <option value="none">حاسبة المخاطر</option>
-                        <option value="height">مرتفع</option>
-                        <option value="medium">متوسط</option>
-                        <option value="low">قليل</option>
+                    <select name="risk" value={risk} onChange={() => setRisk()}>
+                        <option value="3">مرتفع</option>
+                        <option value="2">متوسط</option>
+                        <option value="1">قليل</option>
+                    </select>
+                </div>
+                <div>
+                    <span>الفترة:</span>
+                    <select name="period" value={period} onChange={() => setPeriod()}>
+                        <option value="1d">يوم</option>
+                        <option value="1w">اسبوع</option>
+                        <option value="1m">شهر</option>
+                        <option value="3m">ثلاثة اشهر</option>
+                        <option value="6m">ستة اشهر</option>
+                        <option value="1y">سنة</option>
                     </select>
                 </div>
                 <div>
@@ -35,8 +68,12 @@ function MasterCard({ master }) {
                     <span>{master.masterId.minMonthlyProfit}</span>
                 </div>
                 <div className="master-card__body-btn">
-                    <a className="btn yellow">اضف إلي السلة</a>
-                    <a className="btn yellow">التحويل مباشر</a>
+                    <button onClick={handleLinkAccount} className="btn yellow">
+                        اضف إلي السلة
+                    </button>
+                    <button onClick={handleLinkAccount} className="btn yellow">
+                        التحويل مباشر
+                    </button>
                 </div>
             </div>
         </div>

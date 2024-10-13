@@ -19,21 +19,29 @@ function UsersList() {
         getUsers();
     }, []);
     return (
-        <>
-            <ul>
-                <li>
-                    <p>الاسم</p>
-                    <p>البريد الالكتروني</p>
-                </li>
-                {users &&
-                    users.map((item, index) => (
-                        <li key={index}>
-                            <p>{item.username}</p>
-                            <p>{item.email}</p>
+        <section className="main">
+            <div>
+                <h1>المستخدمين</h1>
+                <div className="users-list">
+                    <ul>
+                        <li>
+                            <p>الاسم</p>
+                            <p>البريد الالكتروني</p>
+                            <p></p>
                         </li>
-                    ))}
-            </ul>
-        </>
+                        <div className="line"></div>
+                        {users &&
+                            users.map((item, index) => (
+                                <li key={index}>
+                                    <p>---</p>
+                                    <p>---</p>
+                                    <button>حذف</button>
+                                </li>
+                            ))}
+                    </ul>
+                </div>
+            </div>
+        </section>
     );
 }
 

@@ -40,7 +40,11 @@ function Login() {
             const id = decoded?.id || "";
             const emailtoken = decoded?.email || "";
 
-            setAuthCus({ accessToken: accessToken, id: id, email: emailtoken });
+            setAuthCus({
+                accessToken: accessToken,
+                id: id,
+                email: emailtoken,
+            });
             navigate("/accountClient");
         } catch (error) {
             console.log(error);
