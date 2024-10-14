@@ -43,7 +43,7 @@ const login = async (req, res) => {
     if (!match) return res.json({ status: false, message: "password error" });
 
     const accessToken = jwt.sign({ email: customer.email, id: customer._id }, process.env.KEY, {
-        expiresIn: "5s",
+        expiresIn: "1h",
     });
     const refreshToken = jwt.sign(
         { email: customer.email, id: customer._id },

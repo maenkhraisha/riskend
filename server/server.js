@@ -35,6 +35,7 @@ const corsoptions = {
 };
 app.use(cookieParser());
 app.use(cors(corsoptions));
+app.options("*", cors(corsoptions));
 
 app.use(express.json());
 app.use("/auth", userRouter);
