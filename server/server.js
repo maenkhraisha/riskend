@@ -33,7 +33,7 @@ const corsoptions = {
     ],
     credentials: true,
 };
-app.use(cors(corsoptions));
+// app.use(cors(corsoptions));
 app.use(cookieParser());
 
 app.use(express.json());
