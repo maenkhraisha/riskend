@@ -18,24 +18,24 @@ import { cusRefreshRouter } from "./routes/cusRefreshRoute.js";
 dotenv.config();
 const app = express();
 
-const corsoptions = {
-    origin: ["http://localhost:3000", "https://riskend-client.onrender.com"],
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
-    allowedHeaders: [
-        "Content-Type",
-        "Origin",
-        "X-Requested-With",
-        "Accept",
-        "x-client-key",
-        "x-client-token",
-        "x-client-secret",
-        "Authorization",
-    ],
-    credentials: true,
-};
-app.use(cookieParser());
-app.use(cors(corsoptions));
-app.options("*", cors(corsoptions));
+// const corsoptions = {
+//     origin: ["http://localhost:3000", "https://riskend-client.onrender.com"],
+//     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
+//     allowedHeaders: [
+//         "Content-Type",
+//         "Origin",
+//         "X-Requested-With",
+//         "Accept",
+//         "x-client-key",
+//         "x-client-token",
+//         "x-client-secret",
+//         "Authorization",
+//     ],
+//     credentials: true,
+// };
+// app.use(cookieParser());
+// app.use(cors(corsoptions));
+// app.options("*", cors(corsoptions));
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", [
         "http://localhost:3000",
