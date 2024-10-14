@@ -18,13 +18,12 @@ import { cusRefreshRouter } from "./routes/cusRefreshRoute.js";
 dotenv.config();
 const app = express();
 
-const corsOptions = {
-    origin: ["http://localhost:3000", "https://riskend-client.onrender.com"],
-    credentials: true,
-    optionSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
+app.use(
+    cors({
+        origin: ["http://localhost:3000", "https://riskend-client.onrender.com"],
+        credentials: true,
+    })
+);
 app.use(cookieParser());
 
 app.use(express.json());
