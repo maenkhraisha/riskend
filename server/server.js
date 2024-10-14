@@ -22,6 +22,16 @@ app.use(
     cors({
         origin: ["http://localhost:3000", "https://riskend-client.onrender.com"],
         methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
+        allowedHeaders: [
+            "Content-Type",
+            "Origin",
+            "X-Requested-With",
+            "Accept",
+            "x-client-key",
+            "x-client-token",
+            "x-client-secret",
+            "Authorization",
+        ],
         credentials: true,
     })
 );
