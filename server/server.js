@@ -23,7 +23,7 @@ app.use(
         origin: [
             "http://localhost:3000",
             "https://riskend-client.onrender.com",
-            "https://riskend-1.onrender.com/",
+            "https://riskend-client.onrender.com/*",
         ],
         credentials: true,
     })
