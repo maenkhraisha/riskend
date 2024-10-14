@@ -31,6 +31,7 @@ const corsoptions = {
         "x-client-secret",
         "Authorization",
     ],
+    credentials: true,
 };
 app.use(cors(corsoptions));
 
