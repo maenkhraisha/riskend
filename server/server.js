@@ -46,7 +46,7 @@ app.use("/customer", customerRouter);
 app.use("/country", countryRouter);
 app.use(verifyJWT);
 
-app.use("/broker-acc", cors(corsoptions), brokerAccRouter);
+app.use("/broker-acc", brokerAccRouter);
 app.use("/master-acc", masterAccRouter);
 app.use("/link-acc", linkAccRouter);
 app.use("/status", statusRouter);
