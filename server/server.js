@@ -33,7 +33,6 @@ const corsoptions = {
     ],
     credentials: true,
 };
-// app.use(cors(corsoptions));
 app.use(cookieParser());
 
 app.use(express.json());
@@ -44,6 +43,7 @@ app.use("/cusRefresh", cusRefreshRouter);
 app.use("/customer", customerRouter);
 
 app.use("/country", countryRouter);
+app.use(cors(corsoptions));
 app.use(verifyJWT);
 
 app.use("/broker-acc", brokerAccRouter);
