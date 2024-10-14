@@ -37,7 +37,10 @@ app.use(cookieParser());
 app.use(cors(corsoptions));
 app.options("*", cors(corsoptions));
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", process.env.DOMAIN); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", [
+        "http://localhost:3000",
+        "https://riskend-client.onrender.com",
+    ]); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
