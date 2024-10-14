@@ -14,7 +14,7 @@ function Home() {
     return (
         <>
             <div className="app">
-                <h1>v 1</h1>
+                <h1>v 2</h1>
                 <section className="content">
                     {authCus && <NavClient />}
                     {!authCus && (
