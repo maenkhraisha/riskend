@@ -19,8 +19,8 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-    origin: "*",
-    credentials: true, //access-control-allow-credentials:true
+    origin: ["http://localhost:3000", "https://riskend-client.onrender.com/"],
+    credentials: true,
     optionSuccessStatus: 200,
 };
 
