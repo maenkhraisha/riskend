@@ -31,11 +31,10 @@ const corsoptions = {
         "x-client-secret",
         "Authorization",
     ],
-    credentials: true,
 };
-app.use(cookieParser());
 app.use(cors(corsoptions));
 
+app.use(cookieParser());
 app.use(express.json());
 app.use("/auth", userRouter);
 app.use("/refresh", refreshRouter);
