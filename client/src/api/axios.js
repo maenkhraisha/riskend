@@ -6,7 +6,7 @@ let BASE_URL = "";
 if (process.env.NODE_ENV === "development") {
     BASE_URL = "http://localhost:3500";
 } else if (process.env.NODE_ENV === "production") {
-    BASE_URL = "https://riskend.onrender.com:3500";
+    BASE_URL = "https://riskend.onrender.com";
 }
 
 export default axios.create({
