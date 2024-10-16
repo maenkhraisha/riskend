@@ -19,7 +19,7 @@ dotenv.config();
 const app = express();
 
 const corsoptions = {
-    origin: ["http://localhost:3000", "https://riskend-client.onrender.com"],
+    origin: ["http://localhost:3000", "https://riskend-client.onrender.com:3000"],
     credentials: true,
 };
 app.use(cors(corsoptions));
