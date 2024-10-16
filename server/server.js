@@ -24,6 +24,13 @@ const corsoptions = {
 };
 app.use(cors(corsoptions));
 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://riskend-client.onrender.com");
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
+
 app.use(cookieParser());
 app.use(express.json());
 app.use("/auth", userRouter);
