@@ -99,7 +99,11 @@ function Countries() {
                     {countries.map((item, index) => (
                         <li className="countries-list" key={index}>
                             <h3>{item.name}</h3>
-                            <button onClick={(e) => deleteCountry(e)} value={item._id}>
+                            <button
+                                className="btn-yellow"
+                                onClick={(e) => deleteCountry(e)}
+                                value={item._id}
+                            >
                                 حذف
                             </button>
                         </li>
