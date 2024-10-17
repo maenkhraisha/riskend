@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // let BASE_URL = "";
-const BASE_URL = "https://riskend.onrender.com";
+const BASE_URL = "http://localhost:3500";
 
 // if (process.env.NODE_ENV === "development") {
 //     BASE_URL = "http://localhost:3500";
