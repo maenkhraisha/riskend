@@ -5,6 +5,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import verifyJWT from "./middleware/verifyJWT.js";
+import cors from "./middleware/cors.js";
+
 import { userRouter } from "./routes/userRoute.js";
 import { customerRouter } from "./routes/customerRoute.js";
 import { registerRouter } from "./routes/registerRoute.js";
@@ -42,7 +44,7 @@ app.use("/customer", customerRouter);
 app.use("/country", countryRouter);
 app.use(verifyJWT);
 
-app.use("/broker-acc", brokerAccRouter);
+app.use("/broker-acc", cors(), brokerAccRouter);
 app.use("/master-acc", masterAccRouter);
 app.use("/link-acc", linkAccRouter);
 app.use("/status", statusRouter);

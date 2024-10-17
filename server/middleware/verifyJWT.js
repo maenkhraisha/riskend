@@ -9,7 +9,6 @@ const verifyJWT = (req, res, next) => {
     jwt.verify(token, process.env.KEY, (err, decoded) => {
         if (err) return res.sendStatus(403); //invalid token
         req.email = decoded.email;
-        res.set("Access-Control-Allow-Origin", "*");
 
         next();
     });
