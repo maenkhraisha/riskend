@@ -17,6 +17,7 @@ import { statusRouter } from "./routes/statusRoute.js";
 import { refreshRouter } from "./routes/refreshRoute.js";
 import { cusRefreshRouter } from "./routes/cusRefreshRoute.js";
 import corsOptions from "./config/corsOptions.js";
+import credentials from "./middleware/credentials.js";
 
 dotenv.config();
 const app = express();
@@ -27,6 +28,7 @@ const app = express();
 // };
 // app.use(cors(corsoptions));
 
+app.use(credentials);
 app.use(cors(corsOptions));
 
 app.use(cookieParser());
