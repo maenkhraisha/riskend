@@ -6,16 +6,18 @@ const getLinkAccounts = async (req, res) => {
     const decode = await jwt.verify(req.cookies.CusRefreshToken, process.env.REFRESH_TOKEN_SECRET);
     const cusId = decode.id;
 
-    console.log(cusId);
-
     try {
-        const linkAccounts = await LinkAccount.find().populate({
-            path: "brokerId",
-            match: { cusId: { $ne: cusId } },
-            populate: {
-                path: "cusId",
-            },
-        });
+        const linkAccounts = await LinkAccount.find()
+            .populate("status")
+            .populate("period")
+            .populate("risk")
+            .populate({
+                path: "brokerId",
+                match: { cusId: { $ne: cusId } },
+                populate: {
+                    path: "cusId",
+                },
+            });
 
         res.json({ linkAccounts: linkAccounts });
     } catch (error) {
@@ -27,6 +29,8 @@ const getLinkAccounts = async (req, res) => {
 const getAllLinkAccounts = async (req, res) => {
     try {
         const linkAccounts = await LinkAccount.find()
+            .populate("period")
+            .populate("risk")
             .populate("status")
             .populate({
                 path: "brokerId",
@@ -49,16 +53,15 @@ const getAllLinkAccounts = async (req, res) => {
 };
 
 const addLinkAcc = async (req, res) => {
-    const { brokerId, masterId, period, risk } = req.body;
+    const { brokerId, masterId, period, risk, price } = req.body;
 
     const newLinkAcc = new LinkAccount({
         brokerId,
         masterId,
         risk,
         period,
+        price,
     });
-
-    console.log(newLinkAcc);
 
     try {
         const response = await newLinkAcc.save();
@@ -69,9 +72,10 @@ const addLinkAcc = async (req, res) => {
         );
     } catch (error) {
         console.log(error);
+        return res.json({ msg: "Add Failed" });
     }
 
-    res.json({ message: "Add successfully" });
+    res.json({ msg: "Add successfully" });
 };
 const updateLinkAcc = async (req, res) => {
     const { id, status } = req.body.data;

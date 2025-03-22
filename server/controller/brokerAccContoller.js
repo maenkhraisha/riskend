@@ -20,7 +20,7 @@ const getBrokerAccounts = async (req, res) => {
                 },
             });
 
-        res.set("Access-Control-Allow-Origin", "http://localhost:3000");
+        // res.set("Access-Control-Allow-Origin", "http://localhost:3000");
         res.json({ brokerAccounts: brokerAccounts });
     } catch (error) {
         res.json({ msg: "error in get broker Accounts" });

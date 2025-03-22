@@ -4,6 +4,7 @@ import express from "express";
 const router = express.Router();
 
 router.get("/connect", masterAccController.getMasterAccountsConnect);
+router.get("/my-account", masterAccController.getMasterAccountsById);
 router.get("/", masterAccController.getMasterAccounts);
 router.post("/", masterAccController.addMasterAcc);
 router.put("/", masterAccController.updateMasterAcc);

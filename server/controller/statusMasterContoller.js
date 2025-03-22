@@ -1,10 +1,11 @@
-import { Status } from "../models/Status.js";
+import { StatusMaster } from "../models/StatusMaster.js";
 
 const getStatus = async (req, res) => {
     try {
-        const status = await Status.find();
+        const status = await StatusMaster.find();
+        console.log(status);
 
-        res.json({ status: status });
+        res.json({ statusMaster: status });
     } catch (error) {
         res.json({ msg: "error in get countries" });
         console.log(error);
@@ -14,18 +15,17 @@ const addStatus = async (req, res) => {
     const { name } = req.body;
 
     try {
-        const response = await Status.find();
+        const response = await StatusMaster.find();
         const count = response.length;
         let isdefault = 0;
         count == 0 ? (isdefault = true) : (isdefault = false);
 
-        console.log(isdefault);
-
-        const newStatus = new Status({
+        const newStatus = new StatusMaster({
             number: count + 1,
             name,
             isdefault: isdefault,
         });
+
         const saveresponse = await newStatus.save();
         res.json({ message: "Add successfully" });
     } catch (error) {
@@ -38,9 +38,9 @@ const updateStatus = async (req, res) => {
 
     try {
         if (isdefault) {
-            await Status.updateMany({ isdefault: false });
+            await StatusMaster.updateMany({ isdefault: false });
         }
-        await Status.findOneAndUpdate(
+        await StatusMaster.findOneAndUpdate(
             { _id: id },
             { name: name, number: number, isdefault: isdefault }
         );
@@ -58,11 +58,11 @@ const deleteStatus = async (req, res) => {
     }
 
     try {
-        const response = await Status.findById({ _id: id });
+        const response = await StatusMaster.findById({ _id: id });
         if (response.isdefault == true) {
             res.json({ msg: "you cannot delete default status" });
         } else {
-            await Status.findOneAndDelete({ _id: id });
+            await StatusMaster.findOneAndDelete({ _id: id });
 
             res.json({ message: "Deleted successfuly" });
         }
@@ -79,4 +79,4 @@ const controllers = {
     deleteStatus,
 };
 
-export { controllers as statusController };
+export { controllers as statusMasterController };

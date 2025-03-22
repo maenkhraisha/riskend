@@ -15,24 +15,34 @@ const getMasterAccounts = async (req, res) => {
     }
 };
 
-const getMasterAccountsConnect = async (req, res) => {
+const getMasterAccountsById = async (req, res) => {
     const decode = await jwt.verify(req.cookies.CusRefreshToken, process.env.REFRESH_TOKEN_SECRET);
-    if (decode) {
-        try {
-            const masters = await BrokerAccount.find({
-                masterId: { $ne: null },
-                cusId: { $ne: decode.id },
-            })
-                .populate("masterId")
-                .populate("cusId");
+    const cusId = decode.id;
 
-            res.json({ masters: masters });
-        } catch (error) {
-            res.json({ msg: "error in get master account" });
-            console.log(error);
-        }
-    } else {
+    try {
+        const masters = await BrokerAccount.find({ cusId: cusId, masterId: { $ne: null } })
+            .populate("masterId")
+            .populate("cusId");
+
+        res.json({ masters: masters });
+    } catch (error) {
         res.json({ msg: "error in get master account" });
+        console.log(error);
+    }
+};
+
+const getMasterAccountsConnect = async (req, res) => {
+    try {
+        const masters = await BrokerAccount.find({
+            masterId: { $ne: null },
+        })
+            .populate("masterId")
+            .populate("cusId");
+
+        res.json({ masters: masters });
+    } catch (error) {
+        res.json({ msg: "error in get master account" });
+        console.log(error);
     }
 };
 
@@ -82,6 +92,7 @@ const deleteMasterAcc = async (req, res) => {
 };
 
 const controllers = {
+    getMasterAccountsById,
     getMasterAccounts,
     getMasterAccountsConnect,
     addMasterAcc,

@@ -10,10 +10,13 @@ import { userRouter } from "./routes/userRoute.js";
 import { customerRouter } from "./routes/customerRoute.js";
 import { registerRouter } from "./routes/registerRoute.js";
 import { countryRouter } from "./routes/countryRoute.js";
+import { riskRouter } from "./routes/riskRoute.js";
+import { periodRouter } from "./routes/periodRoute.js";
 import { brokerAccRouter } from "./routes/brokerAccRoute.js";
 import { masterAccRouter } from "./routes/masterAccRoute.js";
 import { linkAccRouter } from "./routes/linkAccRoute.js";
 import { statusRouter } from "./routes/statusRoute.js";
+import { statusMasterRouter } from "./routes/statusMasterRoute.js";
 import { refreshRouter } from "./routes/refreshRoute.js";
 import { cusRefreshRouter } from "./routes/cusRefreshRoute.js";
 import corsOptions from "./config/corsOptions.js";
@@ -42,10 +45,13 @@ app.use("/customer", customerRouter);
 app.use("/country", countryRouter);
 app.use(verifyJWT);
 
+app.use("/risk", riskRouter);
+app.use("/period", periodRouter);
 app.use("/broker-acc", brokerAccRouter);
 app.use("/master-acc", masterAccRouter);
 app.use("/link-acc", linkAccRouter);
 app.use("/status", statusRouter);
+app.use("/status-master", statusMasterRouter);
 app.use("/signup", registerRouter);
 
 app.listen(process.env.PORT, () => {

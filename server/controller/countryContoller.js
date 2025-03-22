@@ -1,7 +1,6 @@
 import { Country } from "../models/Country.js";
 
 const getCountries = async (req, res) => {
-    const user = req.params.id;
     try {
         const countries = await Country.find();
 
